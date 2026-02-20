@@ -1,13 +1,46 @@
-class Main {
-    public static void main(String[] args) {
+class Table {
 
-        for (int i = 5; i <= 25; i += 5) {
-            System.out.print(i + " ");
+    synchronized void printTable(int n) {
+        for (int i = 1; i <= 5; i++) {
+            System.out.print(n * i + " ");
         }
         System.out.println();
+    }
+}
 
-        for (int i = 100; i <= 500; i += 100) {
-            System.out.print(i + " ");
-        }
+class MyThread1 extends Thread {
+    Table t;
+
+    MyThread1(Table t) {
+        this.t = t;
+    }
+
+    public void run() {
+        t.printTable(5);
+    }
+}
+
+class MyThread2 extends Thread {
+    Table t;
+
+    MyThread2(Table t) {
+        this.t = t;
+    }
+
+    public void run() {
+        t.printTable(100);
+    }
+}
+
+public class SynchronizationDemo {
+    public static void main(String[] args) {
+
+        Table obj = new Table();
+
+        MyThread1 t1 = new MyThread1(obj);
+        MyThread2 t2 = new MyThread2(obj);
+
+        t1.start();
+        t2.start();
     }
 }
