@@ -12,22 +12,13 @@ public class SynchronizationDemo{
 
         Table obj = new Table();
 
-        Thread t1 = new Thread() {
-            public void run() {
-                obj.printTable(5);
-            }
-        };
-
-        Thread t2 = new Thread() {
-            public void run() {
-                obj.printTable(100);
-            }
-        };
+        Thread t1 = new Thread(() -> obj.printTable(5));
+        Thread t2 = new Thread(() -> obj.printTable(100));
 
         t1.start();
-        t1.join();   // ensures first completes fully
+        t1.join();
 
         t2.start();
-        t2.join();   // ensures second completes fully
+        t2.join();
     }
 }
