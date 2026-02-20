@@ -7,7 +7,7 @@ class Table {
     }
 }
 
-public class SynchronizationDemo{
+public class SynchronizationDemo {
     public static void main(String[] args) throws InterruptedException {
 
         Table obj = new Table();
