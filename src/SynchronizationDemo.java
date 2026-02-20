@@ -1,14 +1,14 @@
 class Table {
     synchronized void printTable(int n) {
         for (int i = 1; i <= 5; i++) {
-            System.out.print((n * i) + " ");
+            System.out.print(n * i + " ");
         }
         System.out.println();
     }
 }
 
-public class SynchronizationDemo {
-    public static void main(String[] args) {
+public class SynchronizationDemo{
+    public static void main(String[] args) throws InterruptedException {
 
         Table obj = new Table();
 
@@ -25,6 +25,9 @@ public class SynchronizationDemo {
         };
 
         t1.start();
+        t1.join();   // ensures first completes fully
+
         t2.start();
+        t2.join();   // ensures second completes fully
     }
 }
